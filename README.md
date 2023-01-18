@@ -17,7 +17,7 @@ Before installation, please make sure you have already installed the following t
 1. Clone Logb
 
   ```bash
-    git clone https://github.com/OmAvhad/LogB
+    git clone https://github.com/OmAvhad/SavePlate
   ```
     
 2. Move into the project
