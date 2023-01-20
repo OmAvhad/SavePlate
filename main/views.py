@@ -65,7 +65,7 @@ def register_template(request,slug,template_name="main/register.html"):
             UserDetials.objects.create(user=user,type=type,phone=phone)
             login(request,user)
             messages.success(request, "Registered Successfully" )
-            return redirect('main:register2',user_id=user.id)
+            return redirect('main:register2',user_id=user.id,type=type)
         else:
             messages.error(request, "Username or Email already Exists.")
             messages.error(request, "Some Error Occured")
