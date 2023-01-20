@@ -138,7 +138,7 @@ def apply_donate(request,template_name="donate/donate.html"):
                     to_user = ngo_details_obj,
                     applied_at = datetime.now()
                 )
-                messages.success(request, "Applied for Donation.")
+                messages.success(request, "Donation request has sent! Pickup will be at your Door-Step.")
                 return render(request,template_name)
             else:
                 messages.error(request, "Organization not found.")
