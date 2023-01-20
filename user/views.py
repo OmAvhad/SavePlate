@@ -9,4 +9,5 @@ from django.contrib.auth.models import User
 # Create your views here.
 @csrf_exempt
 def dashboard(request,template_name="user/dashboard.html"):
+    applied_for_donation_list = Donations.objects.filter(from_user__id=request.user.id) 
     return render(request,template_name)

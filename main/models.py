@@ -36,6 +36,8 @@ class Donations(models.Model):
     received_at = models.DateTimeField(blank=True, null=True)
     donated_status = models.BooleanField(default=False)
     donated_at = models.DateTimeField(blank=True, null=True)
+    donated_at_location = models.TextField(blank=True,null=True)
+    image = models.ImageField(upload_to='uploads/donations/images/',blank=True,null=True)
     
     class Meta:
         db_table = "DONATIONS"
