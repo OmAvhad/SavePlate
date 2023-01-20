@@ -1,0 +1,89 @@
+
+
+
+
+
+
+
+
+
+<style>
+    .center_img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" style="font-size: 0px" href="/"><b>
+                    <font size="5" color="#16a085" style="display: inline-block">Save </font>
+                    <font size="6" color="#5A6EA5" style="display: inline-block"> Plate </font>
+                </b></a> &nbsp &nbsp
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+                </ul>
+
+
+                &nbsp;
+                <button class="btn btn-success" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Profile</button>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- profile side bar -->
+
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <div class="profile_card p-5">
+                <center>
+                <div class="card" style="width: 18rem;">
+                    <img class="center_img" height="100" width="50" src="/SavePlate/static/img/main/user_icon.png"  alt="">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+                </center>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- donation card  -->
+
+    <div class="donation_card p-5">
+        <div class="card text-center">
+            <div class="card-header">
+                Hello {{request.user.first_name}}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-warning">Donate</a>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+            </div>
+        </div>
+    </div>
+ 
