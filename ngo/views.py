@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 def dashboard(request,template_name="ngo/dashboard.html"):
     donation_list = Donations.objects.filter(to_user__id=request.user.id,received_status=False)
     food_bank_list = Donations.objects.filter(to_user__id=request.user.id,received_status=True)
-    
+    user_details = UserDetials.objects.get(user__id=request.user.id)
     if request.method == "POST":
         postdata = request.POST
         
@@ -32,4 +32,4 @@ def dashboard(request,template_name="ngo/dashboard.html"):
             except:
                 print(e)
                 messages.error(request,'Something went wrong.')
-    return render(request,template_name)
+    return render(request,template_name,{'user_details',user_details})
