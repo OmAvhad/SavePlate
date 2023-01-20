@@ -62,7 +62,7 @@ def register_template(request,slug,template_name="main/register.html"):
             user = None
         if user ==  None:
             user = User.objects.create(username=username,password=password,email=email,first_name=first_name)
-            UserDetials.objects.create(user=user,phone=phone)
+            UserDetials.objects.create(user=user,phone=phone,type=type)
             login(request,user)
             messages.success(request, "Registered Successfully" )
             return redirect('main:register2',user_id=user.id)
@@ -75,7 +75,6 @@ def register_template(request,slug,template_name="main/register.html"):
 @csrf_exempt
 def register2_template(request,user_id,template_name="main/register2.html"):
     user_id = user_id
-    type = type
     if request.method == "POST":
         postdata = request.POST
         try:
