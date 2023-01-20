@@ -147,7 +147,6 @@ tr:hover {
                 <h2>&nbsp Donations Requests</h2>
             </th>
 
-
             <th width="15%">
                 <button class="add btn btn-success" id="" type="submit"
                     data-bs-toggle="modal" data-bs-target="#modal">
@@ -173,30 +172,30 @@ tr:hover {
                 <th scope="col">Name</th>
                 <th scope="col">Food Name</th>
                 <th scope="col">Plates</th>
-                <th scope="col">Address</th>           
+                {% comment %} <th scope="col">Address</th>            {% endcomment %}
                 <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-
+        <form method="POST">
             {% for obj in donation_list%}
                 <th scope='row'><center>{{obj.id}}</center></th>
-                <td>{{obj.user.first_name}}</td>
+                <td>{{obj.from_user.first_name}}</td>
                 <td>{{obj.food_name}}</td>
                 <td>{{obj.plate_size}}</td>
-                <td>{{obj.address}} ,{{obj.pincode}} ,{{obj.city}}</td>
-
+                {% comment %} <td>{{obj.from_user.address}} ,{{obj.from_user.pincode}} ,{{obj.from_user.city}}</td> {% endcomment %}
+                <input type="hidden" value="{{obj.id}}" name="donation_id" id="{{obj.id}}">
+                <input type="hidden" value="1" name="donation_received" id="{{obj.id}}_donation">
+                
                 <td>
-                {%if obj.received_status == '0'%}
-                    <button class='btn btn-sm btn-warning'>Not received</button></td>
-                {%elif obj.received_status == '1'%}
+                {%if obj.received_status == False%}
+                    <button class='btn btn-sm btn-warning' type="submit">Not received</button></td>
+                {%elif obj.received_status == True%}
                     <button class='btn btn-sm btn-success'>Received</button></td>
-                {%elif obj.donated_status == '1'%}
-                    <button class='btn btn-sm btn-success'>Donated</button></td>
                 {% endif %}
                 </tr>
             {% endfor %}
-
+        </form>
         </tbody>
     </table>
 </font>
@@ -219,7 +218,9 @@ tr:hover {
                 <h2>&nbsp Food Bank</h2>
             </th>
 
-
+        <form method="POST">
+            <input type="hidden" value="some xyz" name="address">
+            <input type="hidden" value="1" id="food_bank_donated" name="food_bank_donated">
             <th width="15%">
                 <button class="add btn btn-success" id="" type="submit"
                     data-bs-toggle="modal" data-bs-target="#modal">
@@ -227,7 +228,7 @@ tr:hover {
                     <b> Donated All</b></font>
                 </button>
             </th>
-
+        </form>
         </tr>
     </tbody>
 </table>
@@ -245,22 +246,28 @@ tr:hover {
                 <th scope="col">Name</th>
                 <th scope="col">Food Name</th>
                 <th scope="col">Plates</th>
-                <th scope="col">Address</th>           
+                {% comment %} <th scope="col">Address</th>            {% endcomment %}
                 <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-
-           
-<th scope='row'><center></center></th>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-
-<td>
-<button class='btn btn-sm btn-warning'>Donated</button></td>
-</tr>
+            <form method="POST">
+                {% for obj in food_bank_list%}
+                    <th scope='row'><center>{{obj.id}}</center></th>
+                    <td>{{obj.from_user.first_name}}</td>
+                    <td>{{obj.food_name}}</td>
+                    <td>{{obj.plate_size}}</td> 
+                    {% comment %} <td>{{obj.from_user}} ,{{obj.from_user.pincode}} ,{{obj.from_user.city}}</td> {% endcomment %}
+                    <input type="hidden" value="{{obj.id}}" name="donation_id" id="{{obj.id}}">
+                    <input type="hidden" value="1" name="donation_received" id="{{obj.id}}_donation">
+                    
+                    <td>
+                    {%if obj.donated_status == False%}
+                        <button class='btn btn-sm btn-warning' type="submit">Not Donated</button></td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+            </form>
         </tbody>
     </table>
 </font>

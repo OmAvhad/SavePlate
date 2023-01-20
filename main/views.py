@@ -15,6 +15,15 @@ def home(request,template_name="main/index.html"):
     return render(request,template_name)
 
 
+def achievements_template(request,template_name="main/achievements.html"):
+    return render(request,template_name)
+
+def contributers_template(request,template_name="main/contributers.html"):
+    return render(request,template_name)
+
+def aboutus_template(request,template_name="main/aboutus.html"):
+    return render(request,template_name)
+
 @csrf_exempt
 def login_template(request,template_name="main/login.html"):
     if request.method == "POST":
