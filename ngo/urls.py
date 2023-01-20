@@ -3,5 +3,5 @@ from . import views
 
 app_name = "ngo"
 urlpatterns = [
-    path('org/dashboard',views.dashboard,name="dashboard"),
+    path('ngo/dashboard',views.dashboard,name="dashboard"),
 ]
