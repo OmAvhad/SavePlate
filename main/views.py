@@ -84,7 +84,6 @@ def register2_template(request,user_id,template_name="main/register2.html"):
             state = postdata['state']
             city = postdata['city']
             pincode = postdata['pincode']
-            phone = postdata['phone']
             try:
                 user_details_obj = UserDetials.objects.get(user__id=id)
             except:
@@ -94,7 +93,6 @@ def register2_template(request,user_id,template_name="main/register2.html"):
                 user_details_obj.state = state
                 user_details_obj.city = city
                 user_details_obj.pincode = pincode
-                user_details_obj.phone = phone
                 user_details_obj.save()
                 messages.success(request, "Address details updated Successfully.")
                 if user_details_obj.type == '2':
@@ -106,6 +104,7 @@ def register2_template(request,user_id,template_name="main/register2.html"):
             else:
                 messages.error(request, "User not found.")
         except Exception as e:
+            print(e)
             messages.error(request, "Some Error Occured.")
     return render(request,template_name,{'user_id': user_id})
     
