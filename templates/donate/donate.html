@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
@@ -51,13 +50,11 @@
                     </div>
                     <div class="mb-3">
                         <div class="form-label">Select NGO</div>
-                        <select class="form-control" id="ngo" name="ngo" aria-describedby="subjectid" required>
-                            <option value="">Select Subject</option>
-        
-                            <option value="ngo_id">NGO 1</option>
-                            <option value="ngo_id">NGO 2</option>
-                            <option value="ngo_id">NGO 3</option>
-                            <option value="ngo_id">NGO 4</option>
+                        <select class="form-control" id="ngo" name="ngo_id" aria-describedby="subjectid" required>
+                            <option value="">Select NGO</option>
+                            {% for ngo in ngos_list %}
+                                <option value="{{ngo.user.id}}">{{ngo.user.first_name}} : {{ngo.address}} ,{{ngo.pincode}}, {{ngo.city}},</option>
+                            {% endfor %}
         
                         </select>
                     </div>
