@@ -123,18 +123,14 @@ tr:hover {
     <!-- donation card  -->
 
     <div class="donation_card p-5">
-        <div class="card text-center">
-            <div class="card-header">
-                Hello {{request.user.first_name}}
+        <div class="text-center">
+           
+            <div class="body">
+                <h3 class="card-title">Charity is an act of <br>Soft Heart</h3><br>
+                <p class="card-text">We have delivered food a lots of poor people. Please Support us <br> for every needy people</p><br>
+                <a href="{% url 'main:apply_donate' %}" class="btn btn-warning">Donate Now</a>
             </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="{% url 'main:apply_donate' %}" class="btn btn-warning">Donate</a>
-            </div>
-            <div class="card-footer text-muted">
-                
-            </div>
+        
         </div>
     </div>
 
