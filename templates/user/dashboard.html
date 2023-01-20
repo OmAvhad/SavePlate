@@ -44,11 +44,14 @@
         <div class="offcanvas-header">
             <div class="profile_card p-5">
                 <center>
-                <div class="card" style="width: 18rem;">
-                    <img class="center_img" height="100" width="50" src="/SavePlate/static/img/main/user_icon.png"  alt="">
+                <div class="" style="width: 18rem;">
+                    <img class="center_img" height="120" width="50" src="{% static 'img/main/user_icon.png' %}"  alt="">
+                    <br>
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <h5 class="card-title">{{request.user.first_name}}</h5>
+                      <br>
+                      <p class="card-text"><b>Address: </b>{{user_details.address}},{{user_details.city}},{{user_details.state}}-{{user_details.pincode}}</p>
+                      <p class="card-text"><b>Phone: {{user_details.phone}} </b></p>
                       <a href="{% url 'main:logout' %}" class="btn btn-warning">Logout</a>
                     </div>
                   </div>

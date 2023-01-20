@@ -7,7 +7,69 @@
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  
 }
+
+
+
+table {
+    position: relative;
+    /* left: 50%; */
+    top: 50%;
+    /* transform: translate(-50%, -50%); */
+    border-collapse: collapse;
+    width: 1200px;
+    /* height: 200px; */
+    border: 1px solid #bdc3c7;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    
+}
+
+tr {
+    transition: all .2s ease-in;
+    cursor: pointer;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+#header {
+    background-color: #16a085;
+    color: #fff;
+}
+
+#title {
+    background-color: #888888;
+    color: #fff;
+}
+
+h1 {
+    font-weight: 600;
+    text-align: center;
+    background-color: #16a085;
+    color: #fff;
+    padding: 10px 0px;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+#content-table tbody tr:last-of-type{
+    border-bottom: 2x solid #009879;
+}
+
+@media only screen and (max-width: 768px) {
+    table {
+        width: 90%;
+    }
+}
+
 </style>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-light">
@@ -24,7 +86,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page"><b><button type="button"
+                                    class="btn btn-warning" onclick="show(1)">Donation Requests</button></b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ><button type="button" class="btn btn-warning" onclick="show(2)">Food Bank</button></a>
+                    </li>
                 </ul>
 
 
@@ -44,12 +112,15 @@
         <div class="offcanvas-header">
             <div class="profile_card p-5">
                 <center>
-                <div class="card" style="width: 18rem;">
-                    <img class="center_img" height="100" width="50" src="/SavePlate/static/img/main/user_icon.png"  alt="">
+                <div class="" style="width: 18rem;">
+                    <img class="center_img" height="120" width="50" src="{% static 'img/main/ngo_icon.png' %}"  alt="">
+                    <br>
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h5 class="card-title">{{request.user.first_name}}</h5>
+                      <br>
+                      <p class="card-text"><b>Address: </b>{{user_details.address}},{{user_details.city}},{{user_details.state}}-{{user_details.pincode}}</p>
+                      <p class="card-text"><b>Phone: {{user_details.phone}} </b></p>
+                      <a href="{% url 'main:logout' %}" class="btn btn-warning">Logout</a>
                     </div>
                   </div>
                 </center>
@@ -61,24 +132,165 @@
 
 
 
-    <!-- donation card  -->
 
-    <div class="donation_card p-5">
-        <div class="card text-center">
-            <div class="card-header">
-                Hello {{request.user.first_name}}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-warning">Donate</a>
-            </div>
-            <div class="card-footer text-muted">
-                2 days ago
-            </div>
-        </div>
-    </div>
-    {% endblock content %}
+
+
+<div class="col-md-12 mt-1" id="donations" style="display: block;">
+    <div class="mb-3 content">
+        <div class="card-body">
+            <center>
+                <br>
+<table style="border-radius: 20px 20px 0 0; overflow: hidden; ">
+    <tbody>
+        <tr id="title">
+            <th width="85%">
+                <h2>&nbsp Donations Requests</h2>
+            </th>
+
+
+            <th width="15%">
+                <button class="add btn btn-success" id="" type="submit"
+                    data-bs-toggle="modal" data-bs-target="#modal">
+                    <font size="4"><i data-feather="user-plus"></i>
+                    <b> Approve All</b></font>
+                </button>
+            </th>
+
+        </tr>
+    </tbody>
+</table>
+
+
+<font size="2">
+
+
+    <table id="content-table" class="content-table">
+        <thead>
+            <tr id="header">
+                <th scope="col">
+                    <center>SR. No.</center>
+                </th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Class</th>
+                <th scope="col">Test</th>           
+                <th scope="col">Link</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+           
+<th scope='row'><center>Hello</center></th>
+<td>hii</td>
+<td>hello</td>
+<td>bye</td>
+
+<td>seeyou</td>
+
+
+<td></td>
+
+<td>
+<button class='btn btn-sm btn-warning'>Delete</button></td>
+</tr>
+        </tbody>
+    </table>
+</font>
+</div>
+</div></div>
+
+
+
+
+
+<div class="col-md-12 mt-1" id="bank" style="display: none;">
+    <div class="mb-3 content">
+        <div class="card-body">
+            <center>
+                <br>
+<table style="border-radius: 20px 20px 0 0; overflow: hidden; ">
+    <tbody>
+        <tr id="title">
+            <th width="85%">
+                <h2>&nbsp Food Bank</h2>
+            </th>
+
+
+            <th width="15%">
+                <button class="add btn btn-success" id="" type="submit"
+                    data-bs-toggle="modal" data-bs-target="#modal">
+                    <font size="4"><i data-feather="user-plus"></i>
+                    <b> Donated All</b></font>
+                </button>
+            </th>
+
+        </tr>
+    </tbody>
+</table>
+
+
+<font size="2">
+
+
+    <table id="content-table" class="content-table">
+        <thead>
+            <tr id="header">
+                <th scope="col">
+                    <center>SR. No.</center>
+                </th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Class</th>
+                <th scope="col">Test</th>           
+                <th scope="col">Link</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+
+           
+<th scope='row'><center>Hello</center></th>
+<td>hii</td>
+<td>hello</td>
+<td>bye</td>
+
+<td>seeyou</td>
+
+
+<td></td>
+
+<td>
+<button class='btn btn-sm btn-warning'>Delete</button></td>
+</tr>
+        </tbody>
+    </table>
+</font>
+</div>
+</div></div>
+
+
+
+<script>
+    function show(i){
+        console.log(222);
+        if(i==2){
+            document.getElementById('donations').classList.remove('btn-warning');
+            document.getElementById('donations').style.display = "none";
+            document.getElementById('bank').style.display = "block";
+            document.getElementById('bank').classList.add('btn-warning');
+
+        }else if(i==1){
+            document.getElementById('bank').classList.remove('btn-warning');
+            document.getElementById('bank').style.display = "none";
+            document.getElementById('donations').style.display = "block";
+            document.getElementById('donations').classList.add('btn-warning');
+        }
+    };
+
+</script>
+
+      {% endblock content %}
 
 
 
