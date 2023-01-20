@@ -179,19 +179,24 @@ tr:hover {
         </thead>
         <tbody>
 
-           
-<th scope='row'><center></center></th>
-<td></td>
-<td></td>
-<td></td>
+            {% for obj in donation_list%}
+                <th scope='row'><center>{{obj.id}}</center></th>
+                <td>{{obj.user.first_name}}</td>
+                <td>{{obj.food_name}}</td>
+                <td>{{obj.plate_size}}</td>
+                <td>{{obj.address}} ,{{obj.pincode}} ,{{obj.city}}</td>
 
+                <td>
+                {%if obj.received_status == '0'%}
+                    <button class='btn btn-sm btn-warning'>Not received</button></td>
+                {%elif obj.received_status == '1'%}
+                    <button class='btn btn-sm btn-success'>Received</button></td>
+                {%elif obj.donated_status == '1'%}
+                    <button class='btn btn-sm btn-success'>Donated</button></td>
+                {% endif %}
+                </tr>
+            {% endfor %}
 
-
-<td></td>
-
-<td>
-<button class='btn btn-sm btn-warning'>Delete</button></td>
-</tr>
         </tbody>
     </table>
 </font>

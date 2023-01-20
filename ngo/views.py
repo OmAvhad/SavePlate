@@ -32,4 +32,4 @@ def dashboard(request,template_name="ngo/dashboard.html"):
             except:
                 print(e)
                 messages.error(request,'Something went wrong.')
-    return render(request,template_name,{'user_details',user_details})
+    return render(request,template_name,{'user_details':user_details,'food_bank_list':food_bank_list,'donation_list':donation_list})
