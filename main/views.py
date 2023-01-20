@@ -8,6 +8,7 @@ from django.contrib.auth.hashers import make_password,check_password
 from .models import UserDetials,Donations
 from django.contrib import messages 
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request,template_name="main/index.html"):
@@ -111,13 +112,12 @@ def register2_template(request,user_id,template_name="main/register2.html"):
 
 def logout_url(request):
     logout(request)
-    redirect('main:index')
+    return redirect('main:index')
     
-
+@login_required
 @csrf_exempt
 def apply_donate(request,template_name="donate/donate.html"):
-    ngos = UserDetials.objects.all()
-    
+    ngos = UserDetials.objects.filter(type=3)
     if request.method == "POST":
         try:
             postdata = request.POST
@@ -139,10 +139,16 @@ def apply_donate(request,template_name="donate/donate.html"):
                     applied_at = datetime.now()
                 )
                 messages.success(request, "Donation request has sent! Pickup will be at your Door-Step.")
-                return render(request,template_name)
+                user_details_obj = UserDetials.objects.get(user__id=request.user.id)
+                if user_details_obj.type == '2':
+                    return redirect('org:dashboard')
+                elif user_details_obj.type == '3':
+                    return redirect('ngo:dashboard')
+                elif user_details_obj.type == '4':
+                    return redirect('user:dashboard')
             else:
                 messages.error(request, "Organization not found.")
         except Exception as e:
             print(e)
             messages.error(request, "Some error occured")
-    return render(request,template_name)
+    return render(request,template_name,{"ngos_list":ngos})
