@@ -65,18 +65,17 @@ def register_template(request,slug,template_name="main/register.html"):
             UserDetials.objects.create(user=user,type=type,phone=phone)
             login(request,user)
             messages.success(request, "Registered Successfully" )
-            return redirect('main:register2',user_id=user.id)
+            return redirect('main:register2',user_id=user.id,type=type)
         else:
             messages.error(request, "Username or Email already Exists.")
-        # except Exception as e:
-        #     print("Exception---?",e)
             messages.error(request, "Some Error Occured")
     return render(request,template_name,{'type': type})
 
 
 @csrf_exempt
-def register2_template(request,user_id,template_name="main/register2.html"):
+def register2_template(request,user_id,type,template_name="main/register2.html"):
     user_id = user_id
+    type = type
     if request.method == "POST":
         postdata = request.POST
         try:
@@ -107,7 +106,7 @@ def register2_template(request,user_id,template_name="main/register2.html"):
         except Exception as e:
             print(e)
             messages.error(request, "Some Error Occured.")
-    return render(request,template_name,{'user_id': user_id})
+    return render(request,template_name,{'user_id': user_id,'type':type})
     
 
 def logout_url(request):
