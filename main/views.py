@@ -5,12 +5,14 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password,check_password
-from .models import UserDetials
+from .models import UserDetials,Donations
 from django.contrib import messages 
+from datetime import datetime
 
 # Create your views here.
 def home(request,template_name="main/index.html"):
     return render(request,template_name)
+
 
 @csrf_exempt
 def login_template(request,template_name="main/login.html"):
@@ -46,25 +48,27 @@ def register_template(request,slug,template_name="main/register.html"):
     type= slug
     if request.method == "POST":
         postdata = request.POST
+        # try:
+        username = postdata['username']
+        password = make_password(postdata['password'])
+        first_name = postdata['name']
+        email = postdata['email']
+        phone = int(postdata['phone'])
+        type = postdata['type']
         try:
-            username = postdata['username']
-            password = make_password(postdata['password'])
-            first_name = postdata['name']
-            email = postdata['email']
-            type = postdata['type']
-            try:
-                user = User.objects.get(Q(username=username) | Q(email=email))
-            except:
-                user = None
-            if user ==  None:
-                user = User.objects.create(username=username,password=password,email=email,first_name=first_name)
-                UserDetials.objects.create(user=user,type=type)
-                login(request,user)
-                messages.success(request, "Registered Successfully" )
-                return redirect(register2_template,user_id=user.id)
-            else:
-                messages.error(request, "Username or Email already Exists.")
-        except Exception as e:
+            user = User.objects.get(Q(username=username) | Q(email=email))
+        except:
+            user = None
+        if user ==  None:
+            user = User.objects.create(username=username,password=password,email=email,first_name=first_name)
+            UserDetials.objects.create(user=user,type=type,phone=phone)
+            login(request,user)
+            messages.success(request, "Registered Successfully" )
+            return redirect('main:register2',user_id=user.id)
+        else:
+            messages.error(request, "Username or Email already Exists.")
+        # except Exception as e:
+        #     print("Exception---?",e)
             messages.error(request, "Some Error Occured")
     return render(request,template_name,{'type': type})
 
@@ -80,11 +84,18 @@ def register2_template(request,user_id,template_name="main/register2.html"):
             state = postdata['state']
             city = postdata['city']
             pincode = postdata['pincode']
+            phone = postdata['phone']
             try:
-                user_details_obj = UserDetials.objects.filter(user__id=id).update(address=address,state=state,city=city,pincode=pincode)
+                user_details_obj = UserDetials.objects.get(user__id=id)
             except:
                 user_details_obj = None
             if user_details_obj:
+                user_details_obj.address = address
+                user_details_obj.state = state
+                user_details_obj.city = city
+                user_details_obj.pincode = pincode
+                user_details_obj.phone = phone
+                user_details_obj.save()
                 messages.success(request, "Address details updated Successfully.")
                 if user_details_obj.type == '2':
                     return redirect('org:dashboard')
@@ -102,3 +113,37 @@ def register2_template(request,user_id,template_name="main/register2.html"):
 def logout_url(request):
     logout(request)
     redirect('main:index')
+    
+
+@csrf_exempt
+def apply_donate(request,template_name="donate/donate.html"):
+    ngos = UserDetials.objects.all()
+    
+    if request.method == "POST":
+        try:
+            postdata = request.POST
+            food_name = postdata['food_name']
+            plate_size = postdata['plate_size']
+            reason = postdata['reason']
+            ngo_id = postdata['ngo_id']
+            try:
+                ngo_details_obj = User.objects.get(id=ngo_id)
+            except:
+                ngo_details_obj = None
+            if ngo_details_obj is not None:
+                Donations.objects.create(
+                    food_name=food_name,
+                    plate_size=plate_size,
+                    reason = reason,
+                    from_user = request.user,
+                    to_user = ngo_details_obj,
+                    applied_at = datetime.now()
+                )
+                messages.success(request, "Applied for Donation.")
+                return render(request,template_name)
+            else:
+                messages.error(request, "Organization not found.")
+        except Exception as e:
+            print(e)
+            messages.error(request, "Some error occured")
+    return render(request,template_name)
