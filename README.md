@@ -73,3 +73,8 @@ Before installation, please make sure you have already installed the following t
 ## 🙏 Support
 
 This project needs a ⭐️ from you. Don't forget to leave a star ⭐️.
+
+<div align="center">
+  <img src="https://forthebadge.com/images/badges/built-with-love.svg">
+  <img src="https://forthebadge.com/images/badges/made-with-.svg">
+</div>
