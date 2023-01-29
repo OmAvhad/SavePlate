@@ -1,18 +1,24 @@
+<div align="center">
+  <img scr="https://github.com/code-squads/Althsis/blob/master/src/assets/icons/analysis.png">
+  <h1> SavePlate </h1>
+  <h3> Save and Donate Food </h3>
+  Built with ❤️ for RUBIX'23 hackathon.
+</div>
 
-# SavePlate
-
-SavePlate is app to donate and save food.
-Developed for RUBIX hackathon.
+## Team Name - GoCode
+#### Team Members :
+- [Om Avhad](https://github.com/OmAvhad)
+- [Rishabh Sinha](https://github.com/RishabhSinha02)
+- [Nidhi Shinde](https://github.com/nidhi8404)
 
 ## 👇 Prerequisites
 
 Before installation, please make sure you have already installed the following tools:
 
-- [Git](https://git-scm.com/downloads)
 - [Python](https://www.python.org/downloads/release/python-3916/)
 - [PostgreSQL](https://www.postgresql.org/download/)
 
-## 🛠️Installation
+## 🛠️ Installation
 
 1. Clone Logb
 
@@ -69,6 +75,10 @@ Before installation, please make sure you have already installed the following t
   python manage.py migrate
   ```
 
-## 🙏 Support
 
-This project needs a ⭐️ from you. Don't forget to leave a star ⭐️.
+<br/>
+<br/>
+<div align="center">
+  <img src="https://forthebadge.com/images/badges/built-with-love.svg">
+  <img src="https://forthebadge.com/images/badges/made-with-python.svg">
+</div>
