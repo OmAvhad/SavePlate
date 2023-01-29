@@ -23,7 +23,7 @@ Before installation, please make sure you have already installed the following t
 1. Clone Logb
 
   ```bash
-    git clone https://github.com/OmAvhad/SavePlate
+    git clone https://github.com/RishabhSinha02/SavePlate
   ```
     
 2. Move into the project
