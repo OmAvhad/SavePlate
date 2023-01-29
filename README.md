@@ -1,8 +1,9 @@
-
-# SavePlate
-
-SavePlate is app to donate and save food.
-Developed for RUBIX hackathon.
+<div align="center">
+  <img scr="https://github.com/code-squads/Althsis/blob/master/src/assets/icons/analysis.png">
+  <h1> Althsis </h1>
+  <h3> Save and Donate Food </h3>
+  Built with ❤️ for RUBIX'23 hackathon.
+</div>
 
 ## 👇 Prerequisites
 
