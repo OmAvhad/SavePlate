@@ -1,5 +1,4 @@
 <div align="center">
-  <img scr="https://github.com/code-squads/Althsis/blob/master/src/assets/icons/analysis.png">
   <h1> SavePlate </h1>
   <h3> Save and Donate Food </h3>
   Built with ❤️ for RUBIX'23 hackathon.
@@ -20,7 +19,7 @@ Before installation, please make sure you have already installed the following t
 
 ## 🛠️ Installation
 
-1. Clone Logb
+1. Clone SavePlate
 
   ```bash
     git clone https://github.com/RishabhSinha02/SavePlate
